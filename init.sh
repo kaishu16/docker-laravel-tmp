@@ -1,4 +1,7 @@
 #!/usr/bin/bash
+/usr/local/bin/python3 composer_init.py
+mkdir src/package
+
 select VAR in test1 item 終了
 do
 #繰り返しの中でcase分を使用している。
@@ -6,9 +9,9 @@ do
 	"test1" ) 
         git remote add coachtech-pro-test git@github.com:kaishu16/coachtech-pro-test.git
         git fetch coachtech-pro-test test1
-        git read-tree --prefix=package/parts -u coachtech-pro-test/test1
-        cp -r package/parts/src/test1 package/src
-        rm -r package/parts
+        git read-tree --prefix=src/package/parts -u coachtech-pro-test/test1
+        cp -r src/package/parts/src src/package/src
+        rm -r src/package/parts
         git remote rm coachtech-pro-test
         echo "test1 インストール"
         echo "追加するパッケージを選択してください"
@@ -16,10 +19,10 @@ do
 	"item" )
         git remote add coachtech-pro-parts git@github.com:kaishu16/docker-laravel-parts.git
         git fetch coachtech-pro-parts itemCRUD
-        git read-tree --prefix=package/parts -u coachtech-pro-parts/itemCRUD
-        cp -r package/parts/package/item package/src
-        py package/parts/add_repository.py
-        rm -r package/parts
+        git read-tree --prefix=src/package/parts -u coachtech-pro-parts/itemCRUD
+        cp -r src/package/parts/package/item src/package/src
+        /usr/local/bin/python3 src/package/parts/add_composer_repository.py
+        rm -r src/package/parts
         git remote rm coachtech-pro-parts
         echo "item インストール"
         echo "追加するパッケージを選択してください"
