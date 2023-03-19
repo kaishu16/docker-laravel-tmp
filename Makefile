@@ -1,13 +1,14 @@
 install:
+	mkdir -p src
+	mkdir -p package/src
 	@make build
 	@make up
 	docker compose exec app composer create-project --prefer-dist laravel/laravel .
 	docker compose exec app php artisan key:generate
 	docker compose exec app php artisan storage:link
 	docker compose exec app chmod -R 777 storage bootstrap/cache
-	git remote add coachtech-pro-test git@github.com:kaishu16/coachtech-pro-test.git
+	py composer_init.py
 	sh init.sh
-	git remote rm coachtech-pro-test
 	@make fresh
 up:
 	docker compose up -d
