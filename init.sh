@@ -24,6 +24,7 @@ do
         /usr/local/bin/python3 src/package/parts/add_composer_repository.py
         rm -r src/package/parts
         git remote rm coachtech-pro-parts
+        docker compose exec app composer require package/item
         echo "item インストール"
         echo "追加するパッケージを選択してください"
     ;;
