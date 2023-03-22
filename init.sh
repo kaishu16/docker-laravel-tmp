@@ -1,8 +1,8 @@
 #!/usr/bin/bash
-/usr/local/bin/python3 composer_init.py
-mkdir src/package
+# /usr/local/bin/python3 composer_init.py
+# mkdir src/package
 
-select VAR in test1 item 終了
+select VAR in test1 item パーツ一覧 終了
 do
 #繰り返しの中でcase分を使用している。
     case $VAR in
@@ -27,6 +27,12 @@ do
         docker compose exec app composer require package/item
         echo "item インストール"
         echo "追加するパッケージを選択してください"
+    ;;
+    "パーツ一覧" )
+        echo "1) test1
+2) item
+3) パーツ一覧
+4) 終了"
     ;;
 	"終了" ) break ;;
 	* ) echo "選択肢以外のものです。再入力してください。"
