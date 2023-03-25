@@ -1,6 +1,6 @@
 #!/usr/bin/bash
-# /usr/local/bin/python3 composer_init.py
-# mkdir src/package
+node composer_init.js
+mkdir src/package/src
 
 select VAR in test1 item パーツ一覧 終了
 do
@@ -18,10 +18,10 @@ do
     ;;
 	"item" )
         git remote add coachtech-pro-parts git@github.com:kaishu16/docker-laravel-parts.git
-        git fetch coachtech-pro-parts itemCRUD
-        git read-tree --prefix=src/package/parts -u coachtech-pro-parts/itemCRUD
-        cp -r src/package/parts/package/item src/package/src
-        /usr/local/bin/python3 src/package/parts/add_composer_repository.py
+        git fetch coachtech-pro-parts item
+        git read-tree --prefix=src/package/parts -u coachtech-pro-parts/item
+        cp -r src/package/parts/src/package/src/item src/package/src
+        node src/package/parts/add_composer_repository.js
         rm -r src/package/parts
         git remote rm coachtech-pro-parts
         docker compose exec app composer require package/item
