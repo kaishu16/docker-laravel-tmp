@@ -1,6 +1,7 @@
 #!/usr/bin/bash
 node composer_init.js
-mkdir src/package/src
+mkdir ./src/package
+mkdir ./src/package/src
 
 select VAR in test1 item パーツ一覧 終了
 do
